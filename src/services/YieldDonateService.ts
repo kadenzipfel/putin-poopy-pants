@@ -1,5 +1,5 @@
 import { Web3Provider } from '@ethersproject/providers'
-import { Contract, ethers, Signer } from 'ethers'
+import { BigNumber, Contract, ethers, Signer } from 'ethers'
 import { YIELD_DONATE_CONTRACT } from '../utils/constants'
 import { YieldDonateAbi as abi } from './abis/YieldDonateAbi'
 
@@ -7,7 +7,7 @@ class YieldDonateService {
   contract: Contract
   provider: Web3Provider
 
-  constructor(provider: Web3Provider, signerAddress: string) {
+  constructor(provider: Web3Provider) {
     const signer: Signer = provider.getSigner()
     this.contract = new ethers.Contract(
       YIELD_DONATE_CONTRACT,
@@ -15,6 +15,32 @@ class YieldDonateService {
       provider
     ).connect(signer)
     this.provider = provider
+  }
+
+  // READ FUNCTIONS
+  // ==============
+
+  // WRITE FUNCTIONS
+  // ===============
+  deposit = async (
+    sellToken: string,
+    buyToken: string,
+    vault: string,
+    minTokens: BigNumber,
+    calldata: string
+  ) => {
+    try {
+      const tx = await this.contract.deposit(
+        sellToken,
+        buyToken,
+        vault,
+        minTokens,
+        calldata
+      )
+      return tx
+    } catch (err) {
+      throw new Error(err as string)
+    }
   }
 }
 
