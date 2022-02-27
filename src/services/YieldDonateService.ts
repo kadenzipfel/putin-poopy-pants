@@ -22,6 +22,8 @@ class YieldDonateService {
 
   // WRITE FUNCTIONS
   // ===============
+
+  // TODO: Update to actual contract interface
   deposit = async (
     sellToken: string,
     buyToken: string,
@@ -31,6 +33,28 @@ class YieldDonateService {
   ) => {
     try {
       const tx = await this.contract.deposit(
+        sellToken,
+        buyToken,
+        vault,
+        minTokens,
+        calldata
+      )
+      return tx
+    } catch (err) {
+      throw new Error(err as string)
+    }
+  }
+
+  // TODO: Update to actual contract interface
+  withdraw = async (
+    sellToken: string,
+    buyToken: string,
+    vault: string,
+    minTokens: BigNumber,
+    calldata: string
+  ) => {
+    try {
+      const tx = await this.contract.withdraw(
         sellToken,
         buyToken,
         vault,
