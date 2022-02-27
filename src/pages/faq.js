@@ -23,7 +23,7 @@ const config = [
 ]
 
 const FaqSection = () => (
-  <Accordion style={{width: '80vw'}} defaultIndex={[0]} allowMultiple>
+  <Accordion style={{width: '80vw'}} defaultIndex={[]} allowMultiple>
     {config.map(({ question, answer }, index) => (
       <FaqItem question={question} answer={answer} key={index}/>
     ))}
