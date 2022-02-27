@@ -20,24 +20,41 @@ class YieldDonateService {
   // READ FUNCTIONS
   // ==============
 
+  balanceOf = async (address: string) => {
+    const balance = await this.contract.balanceOf(address)
+    return balance
+  }
+
+  totalDeployed = async () => {
+    const total = await this.contract.totalUnderlyingDeployed()
+    return total
+  }
+
+  isAcceptedDonationToken = async (token: string) => {
+    const accepted = await this.contract.acceptedDonationTokens(token)
+    return accepted
+  }
+
   // WRITE FUNCTIONS
   // ===============
 
-  // TODO: Update to actual contract interface
   deposit = async (
     sellToken: string,
+    sellAmount: BigNumber,
     buyToken: string,
-    vault: string,
-    minTokens: BigNumber,
-    calldata: string
+    target: string,
+    minTokens: BigNumber
   ) => {
     try {
+      // TODO: Add appropriate data
+      const data = ''
       const tx = await this.contract.deposit(
         sellToken,
+        sellAmount,
         buyToken,
-        vault,
-        minTokens,
-        calldata
+        target,
+        data,
+        minTokens
       )
       return tx
     } catch (err) {
@@ -45,22 +62,14 @@ class YieldDonateService {
     }
   }
 
-  // TODO: Update to actual contract interface
-  withdraw = async (
-    sellToken: string,
-    buyToken: string,
-    vault: string,
-    minTokens: BigNumber,
-    calldata: string
-  ) => {
+  withdraw = async (amount: BigNumber, account: string) => {
     try {
-      const tx = await this.contract.withdraw(
-        sellToken,
-        buyToken,
-        vault,
-        minTokens,
-        calldata
-      )
+      const balance = await this.balanceOf(account)
+      if (balance.lt(amount)) {
+        console.warn('insufficient balance')
+        return
+      }
+      const tx = await this.contract.withdraw(amount)
       return tx
     } catch (err) {
       throw new Error(err as string)
