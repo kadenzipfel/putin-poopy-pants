@@ -1,7 +1,9 @@
 import { Button } from '@chakra-ui/button'
-import { Box, HStack, Text, VStack } from '@chakra-ui/layout'
+import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/layout'
 import { formatEther } from 'ethers/lib/utils'
 import { useWallet } from '../context/wallet-provider'
+import { shorten } from '../utils/shorten'
+import Davatar from '@davatar/react'
 
 export default function Deposit() {
   const { activateBrowserWallet, ens, account, etherBalance } = useWallet()
@@ -17,14 +19,34 @@ export default function Deposit() {
         <Box fontWeight="bold" fontSize={34}>
           uDai
         </Box>
-        <Button onClick={activateBrowserWallet}>Connect to wallet</Button>
+        <Button onClick={activateBrowserWallet} padding={0} rounded="md">
+          {account ? (
+            <Flex alignItems="center">
+              <Box>
+                <Text paddingX={3}>
+                  {parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+                </Text>
+              </Box>
+              <Flex
+                alignItems="center"
+                gap={2}
+                bg="gray.200"
+                paddingY={1}
+                paddingX={2}
+                marginRight={1}
+                rounded="md"
+              >
+                <Box>
+                  <Davatar size={25} address={account} />
+                </Box>
+                <Text>{ens || shorten(account)}</Text>
+              </Flex>
+            </Flex>
+          ) : (
+            <Text paddingX={4}>Connect to wallet</Text>
+          )}
+        </Button>
       </HStack>
-      {account ? (
-        <Box>
-          <Text>Hello, {ens || account}!</Text>
-          <Text>You have {formatEther(etherBalance)} ETH</Text>
-        </Box>
-      ) : null}
     </Box>
   )
 }
