@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/layout'
 import { Header } from '../Header'
 import Head from 'next/head'
 
-export const Root: FC = ({ children }) => {
+export const Page: FC = ({ children }) => {
   return (
     <>
       <Head>
@@ -12,18 +12,9 @@ export const Root: FC = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex
-        position="absolute"
-        direction="column"
-        justifyContent="space-between"
-        minHeight="100vh"
-        width="100%"
-        backgroundColor="#005BBB"
-      >
+      <Flex direction="column" backgroundColor="#005BBB">
         <Header />
-        <Flex width="100%" height="80%">
-          <main>{children}</main>
-        </Flex>
+        <main>{children}</main>
         <Footer />
       </Flex>
     </>

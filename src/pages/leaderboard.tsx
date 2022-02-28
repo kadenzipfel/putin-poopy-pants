@@ -74,8 +74,8 @@ const Leaderboard: NextPage = () => {
   return (
     <Flex
       direction="row"
-      width="100vw"
-      minHeight="100vh"
+      width="100%"
+      height="100%"
       alignItems="center"
       justifyContent="center"
     >
@@ -120,7 +120,7 @@ const Leaderboard: NextPage = () => {
                     </Td>
                     <Td isNumeric color="white">
                       <Stat>
-                        <StatNumber>Ξ {data?.value}</StatNumber>
+                        <StatNumber>Ξ {data?.value.toFixed(4)}</StatNumber>
                         <StatHelpText>Donated</StatHelpText>
                       </Stat>
                     </Td>

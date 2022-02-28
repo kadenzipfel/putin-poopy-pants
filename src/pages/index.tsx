@@ -36,6 +36,8 @@ const blastConfetti = (evt: MouseEvent, hard: boolean) => {
 const Home: NextPage = () => {
   const translate = useTranslation(localisation)
 
+  // return <h1>Test</h1>;
+
   return (
     <Flex
       alignItems="center"

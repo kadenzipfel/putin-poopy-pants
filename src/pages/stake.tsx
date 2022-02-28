@@ -69,8 +69,9 @@ export default function Deposit() {
                 color="white"
                 width="455px"
                 height="80px"
+                borderRadius="25px"
               >
-                <Text fontSize="3xl"> Stake </Text>
+                <Text fontSize="3xl">Stake</Text>
               </Button>
             </>
           ) : (
@@ -82,7 +83,7 @@ export default function Deposit() {
                 width="455px"
                 height="80px"
               >
-                <Text fontSize="3xl"> Unstake </Text>
+                <Text fontSize="3xl">Unstake</Text>
               </Button>
 
               <Button
@@ -210,9 +211,8 @@ const DepositBox = ({ children, mode }: DepositBoxProps) => (
   <Box
     borderRadius="25px"
     background="rgba(0, 0, 0, 0.2)"
-    width="524px"
-    height="423px"
-    padding="20px"
+    paddingX="35px"
+    paddingY="35px"
     display="flex"
     flexDirection="column"
     alignItems="center"
@@ -220,8 +220,13 @@ const DepositBox = ({ children, mode }: DepositBoxProps) => (
     justifyContent="space-around"
   >
     <Box width="100%">
-      <Text color="white" fontSize="48px" float="left">
-        {' '}
+      <Text
+        mb="20px"
+        fontWeight="bold"
+        color="white"
+        fontSize="48px"
+        float="left"
+      >
         {mode === DepositMode.DEPOSIT ? 'Stake' : 'Unstake'}{' '}
       </Text>
     </Box>
@@ -233,19 +238,22 @@ const DepositBox = ({ children, mode }: DepositBoxProps) => (
 const BoxDepositBox = () => (
   <Box
     backgroundColor="rgba(255,255,255,0.2)"
-    width="455px"
-    height="140px"
-    borderRadius="20px"
+    width="100%"
+    borderRadius="25px"
     display="flex"
+    paddingX="25px"
+    paddingY="20px"
+    mb="28px"
     flexDirection="row"
     alignItems="center"
-    justifyContent="space-around"
+    justifyContent="space-between"
   >
     <Box color="white">
-      <Text fontSize="36px">0.05</Text>
-      <Text color="#DADADA"> balance: 0.02</Text>
+      <Text fontSize="36px" fontWeight="bold">
+        0.05
+      </Text>
+      <Text color="#DADADA">Balance: 0.02</Text>
     </Box>
-
     <Box color="white">
       <AssetMenu />
     </Box>
@@ -282,6 +290,7 @@ const AssetMenu = () => {
             display="flex"
             justifyContent="space-around"
             width="150px"
+            borderRadius="15px"
             alignItems="center"
             backgroundColor="#5c8abc"
             isActive={isOpen}
@@ -293,12 +302,15 @@ const AssetMenu = () => {
               display="flex"
               justifyContent="space-around"
               alignContent="center"
+              alignItems="center"
             >
-              <img src={TokenSymbols[selected]} alt={selected} width="20%" />
-
-              {eth_2_assets[selected].text}
-
-              <ChevronDownIcon width="25px" />
+              <img
+                src={TokenSymbols[selected]}
+                alt={selected}
+                className="h-6 w-6"
+              />
+              <Text>{eth_2_assets[selected].text}</Text>
+              <ChevronDownIcon className="h-5 w-5" />
             </Box>
           </MenuButton>
 
@@ -328,19 +340,16 @@ const AssetMenu = () => {
 
 const YourDeposits = () => (
   <Box width="524px">
-    <Text fontSize="36px" color="white">
-      {' '}
-      Your Deposits{' '}
+    <Text mt={5} mb={4} fontSize="36px" fontWeight="bold" color="white">
+      Your Deposits
     </Text>
-
     <Flex flexDirection={'row'} wrap="wrap" gap={4}>
       {Object.values(Assets).map((asset: string, index) => (
         <Flex
           backgroundColor="#004B9B"
-          width="160px"
-          height="101px"
-          padding="10px"
-          borderRadius="5px"
+          paddingX="25px"
+          paddingY="15px"
+          borderRadius="25px"
           display="flex"
           flexDirection="column"
           alignItems="center"

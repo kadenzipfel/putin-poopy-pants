@@ -19,7 +19,7 @@ const Explore = () => {
         width="100%"
         height="20%"
       >
-        <Text color="white" fontFamily="Montserrat" fontSize="5vh">
+        <Text color="white" fontSize="5vh">
           Explore NFTs
         </Text>
         <Spacer />
@@ -69,7 +69,7 @@ const NFTDisplay = () => {
   return (
     <Box width="30%" height="60%" color="white">
       <Flex direction="column" justifyContent="space-between" height="100%">
-        <Text color="white" fontFamily="Montserrat" fontSize="3vh">
+        <Text color="white" fontSize="3vh">
           Collection Name
         </Text>
         <Text>

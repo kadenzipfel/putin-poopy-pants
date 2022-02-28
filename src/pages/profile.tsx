@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, Flex } from '@chakra-ui/react'
+import { Text, Flex, Box } from '@chakra-ui/react'
 import { Button } from '@chakra-ui/button'
 import { useCoingeckoPrice } from '@usedapp/coingecko'
 
@@ -14,13 +14,12 @@ const Profile = () => {
 
   return (
     <Flex
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      height="100%"
-      minHeight="100vh"
       bg="blue.900"
-      pt={20}
+      direction="column"
+      width="100%"
+      minHeight="100vh"
+      justify="center"
+      align="center"
     >
       <Text color="white" fontSize="4xl">
         uDai
