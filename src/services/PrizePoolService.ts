@@ -34,6 +34,7 @@ class PrizePoolService {
 
   // WRITE FUNCTIONS
   // ===============
+
   deposit = async (
     account: string,
     amount: BigNumber
